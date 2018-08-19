@@ -49,7 +49,7 @@ let notes = [
 
   app.use(logger)
 
-  app.post('api/notes', (req,res) => {
+  app.post('/api/notes', (req,res) => {
         const body = req.body
 
         if (body.content === undefined) {
@@ -68,12 +68,12 @@ let notes = [
   })
 
 
-  app.get('api/notes', (req,res) => {
+  app.get('/api/notes', (req,res) => {
       res.json(notes)
       const logger = req.logger
   })
 
-  app.get('api/notes/:id', (req,res) => {
+  app.get('/api/notes/:id', (req,res) => {
       const id =  Number (req.params.id)
       console.log(id)
       const note = notes.find(note => note.id === id)
@@ -85,7 +85,7 @@ let notes = [
       }
   })
 
-  app.delete('api/notes/:id', (req,res) => {
+  app.delete('/api/notes/:id', (req,res) => {
       const id = Number (req.params.id)
       notes = notes.filter(note => note.id !== id)
 
