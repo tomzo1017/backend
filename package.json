@@ -1,0 +1,21 @@
+{
+  "name": "notebackend",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "nodemon index.js"
+  },
+  "author": "Tommi Hautaviita",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.3",
+    "heroku": "^7.9.3",
+    "morgan": "^1.9.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.3"
+  }
+}
