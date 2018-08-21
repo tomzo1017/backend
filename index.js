@@ -3,6 +3,30 @@ const app = express()
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const cors = require('cors')
+const mongoose = require('mongoose')
+const Note = require('./models/note')
+
+
+/*
+
+const formatNote = (note) => {
+    const formattedNote = {...note._doc, id: note._id}
+    delete formattedNote._id
+    delete formattedNote.__v    
+    return formattedNote
+}
+
+*/
+
+const formatNote = (note) => {
+    return {
+      content: note.content,
+      date: note.date,
+      important: note.important,
+      id: note._id
+    }
+  }
+  
 app.use(express.static('build'))
 
 app.use(cors())
@@ -56,33 +80,34 @@ let notes = [
             return res.status(400).json({error: 'content missing'})
         }
 
-        const note = {
-            content: body.content,
-            important: body.important || false,
-            date: new Date(),
-            id: generateId()
-        }
+       const note = new Note({
+           content: body.content,
+           important: body.important || false,
+           date: new Date()
+       })
 
-        notes = notes.concat(note)
-        res.json(note)
+       note
+            .save()
+            .then(savedNote => {
+                res.json(formatNote(savedNote))
+            })
   })
 
 
   app.get('/api/notes', (req,res) => {
-      res.json(notes)
-      const logger = req.logger
+   Note
+    .find({})
+    .then(notes => {
+        res.json(notes.map(formatNote(note)))
+    })
   })
 
   app.get('/api/notes/:id', (req,res) => {
-      const id =  Number (req.params.id)
-      console.log(id)
-      const note = notes.find(note => note.id === id)
-      console.log(note)
-      if (note) {
-          res.json(note)
-      } else {
-          res.status(404).end()
-      }
+     Note
+     .findById(request.params.id)
+     .then(note => {
+         response.json(formatNote(note))
+     })
   })
 
   app.delete('/api/notes/:id', (req,res) => {

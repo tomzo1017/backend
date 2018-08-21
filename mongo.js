@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 
 
-const url = 'mongodb://ggggsegesgsgs125322.mlab.com:25322/tommidatabase'
+const url = 'mongodb://tomzo1017:Tomzo1121@ds125322.mlab.com:25322/tommidatabase'
 
 mongoose.connect(url, { useNewUrlParser: true })
 
@@ -15,7 +15,7 @@ const Note = mongoose.model('Note', {
 
 
 const note = new Note({
-    content: "HTML on helppoa",
+    name: process.argv[2],
     date: new Date,
     important: true
 })
