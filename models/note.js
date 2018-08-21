@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 
-const url = 'mongodb://tomzo1017:Tomzo1121@ds125322.mlab.com:25322/tommidatabase'
+const url = 'metaet
 
 
 mongoose.connect(url)
