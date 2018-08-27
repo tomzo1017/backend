@@ -1,10 +1,10 @@
 const mongoose = require('mongoose')
 
 
-const url = 'metaet
+const url = "mongodb://tomzo1017:Tomzo1121@ds125322.mlab.com:25322/tommidatabase"
 
 
-mongoose.connect(url)
+mongoose.connect(url, { useNewUrlParser: true })
 
 
 
